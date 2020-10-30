@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #app {
+        margin: 50px;
+      }
+
+      #components-demo div{
+        border: solid 1px;
+        padding:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="components-demo">
+          <hello message="Hello World1!"></hello>
+          <hello message="Hello World2!"></hello>
+          <hello message="Hello World3!"></hello>
+      </div>
+
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script>
+
+
+
+      Vue.component('hello',{
+        props:{
+          message: {
+            type:String,
+            required:true,
+            default: "Hello"
+          }
+        },
+        template:`
+          <div>
+            <h1>{{message}}</h1>
+          </div>
+        `,
+        data: function () {
+          return {
+            message: this.message
+          }
+        }
+      });
+
+      //Note: component declaration must preceed the Vue app and element assignment called below
+      new Vue({ el: '#components-demo' });
+
+    </script>
+
+  </body>
+</html>
